@@ -1,0 +1,9 @@
+.login_button{
+    display: flex;
+    align-items: center;
+}
+
+.login_button_wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
