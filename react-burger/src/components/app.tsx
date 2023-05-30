@@ -3,28 +3,35 @@ import appStyles from './app.module.css';
 import AppHeader from './app-header/app-header';
 import BurgerConstructor from './burger-constructor/burger-constructor';
 import BurgerIngredients from './burger-ingredients/burger-ingredients';
+import { Ingredient } from '../models/ingredient.model';
 import { apiUrl } from '../const/api.const';
 
 function App() {
-  const [ingredientsData, setingredientsData] = React.useState([]);
+  const [ingredientsData, setIngredientsData] = React.useState<Ingredient[]>([]);
 
   React.useEffect(() => {
-    getIngredients();
+    const getIngredientsData = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        const responseData = await response.json();
+        if (!responseData.success) {
+          throw new Error(responseData);
+        }
+        else{
+          setIngredientsData(responseData.data);
+        }
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
+    getIngredientsData();
   }, [])
 
-  function getIngredients() {
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then((data) => { console.log(data.data); data.success ? setingredientsData(data.data) : console.log(data) })
-      .catch(e => {
-        console.log(e);
-      });
-  }
   return (
     <div className="app">
-      <AppHeader />
-      <main className={`mt-10 ${appStyles.main}`}>
-        <BurgerIngredients ingredientsData = {ingredientsData} />
+      <AppHeader /> <main className={`mt-10 ${appStyles.main}`}>
+        <BurgerIngredients ingredientsData={ingredientsData} />
         <BurgerConstructor />
       </main>
     </div>
