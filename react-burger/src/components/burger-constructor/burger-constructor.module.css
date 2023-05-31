@@ -1,0 +1,17 @@
+.burger_constructor_wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.burger_constructor_list_wrapper{
+    max-height: 350px;
+    overflow-y: scroll;
+}
+.burger_constructor_item_wrapper{
+    display: flex;
+    align-items: center;
+}
+.burger_constructor_order_button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
