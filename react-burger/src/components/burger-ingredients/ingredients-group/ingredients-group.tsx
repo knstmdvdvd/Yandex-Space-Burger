@@ -15,7 +15,7 @@ function IngredientsGroup({ ingredientsGroupData, title, type }: Props) {
       <h2 className="text text_type_main-medium mb-6">{title}</h2>
       <div className={ingredientsGroupStyles.ingredients_group_wrapper}>
         {ingredientsGroupData.map(function (item, index) {
-          return <IngredientsItem key={item.id} ingredientData={item} />;
+          return (<IngredientsItem key={item._id} ingredientData={item} />);
         })}
       </div>
     </section>

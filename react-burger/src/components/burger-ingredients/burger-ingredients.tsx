@@ -12,13 +12,11 @@ function BurgerIngredients({ ingredientsData }: Props) {
   const [current, setCurrent] = React.useState("bun");
 
   React.useEffect(() => {
-    document
-      .getElementById(current)
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
+    document.getElementById(current)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   }, [current]);
 
   return (
@@ -26,7 +24,7 @@ function BurgerIngredients({ ingredientsData }: Props) {
       className={`${burgerIngredientsStyles.burger_ingredients_wrapper}`}
     >
       <h1 className="text text_type_main-large">Соберите бургер</h1>
-      <div style={{ display: "flex" }}>
+      <div className={burgerIngredientsStyles.burger_ingredients_tab}>
         <Tab value="bun" active={current === "bun"} onClick={setCurrent}>
           Булки
         </Tab>

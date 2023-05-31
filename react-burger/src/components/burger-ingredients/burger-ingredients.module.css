@@ -6,3 +6,7 @@
   height: calc(100vh - 310px);
   overflow-y: scroll;
 }
+
+.burger_ingredients_tab{
+    display: flex;
+}

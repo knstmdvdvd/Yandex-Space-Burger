@@ -9,7 +9,7 @@ interface Props {
 function IngredientDetails({ ingredientData }: Props) {
   return (
     <div className={ingredientsDetailsStyles.item_modal_wrapper}>
-      <img className="mb-4" src={ingredientData.image_large} alt="" />
+      <img className="mb-4" src={ingredientData.image_large} alt={ingredientData.name} />
       <span className="text mb-8 text_type_main-medium">
         {ingredientData.name}
       </span>

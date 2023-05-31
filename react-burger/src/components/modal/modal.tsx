@@ -4,6 +4,7 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ReactDOM from "react-dom";
 
+const modalWrapper = document.getElementById("modals") as HTMLElement;
 type Props = {
   closeModal: () => void;
   title: string;
@@ -11,7 +12,6 @@ type Props = {
 };
 
 function Modal({ closeModal, title, children }: Props) {
-  const modalWrapper = document.getElementById("modals") as HTMLElement;
   useEffect(() => {
     const onEscClick = (el: KeyboardEvent) => {
       if (el.key === "Escape") {
@@ -21,11 +21,7 @@ function Modal({ closeModal, title, children }: Props) {
     document.addEventListener("keydown", onEscClick);
 
     return () => {
-      document.removeEventListener("keydown", function (el) {
-        if (el.key === "Escape") {
-          closeModal();
-        }
-      });
+      document.removeEventListener("keydown", onEscClick);
     };
   });
 
