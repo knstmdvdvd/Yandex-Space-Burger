@@ -18,7 +18,6 @@ function App() {
           throw new Error(responseData);
         }
         else {
-          console.log(responseData.data);
           setIngredientsData(responseData.data);
         }
       }
