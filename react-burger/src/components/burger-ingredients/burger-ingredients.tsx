@@ -5,6 +5,7 @@ import IngredientsGroup from "./ingredients-group/ingredients-group";
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import { useModal } from "../../hooks/useModal";
 
 interface Props {
   ingredientsData: Array<Ingredient>;
@@ -12,19 +13,14 @@ interface Props {
 
 function BurgerIngredients({ ingredientsData }: Props) {
   const [current, setCurrent] = React.useState("bun");
-
-  const [isItemModalOpen, setIsItemModalOpen] = React.useState<boolean>(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
   const [selectedIngredient, setSelectedIngredient] =
     React.useState<Ingredient>({} as Ingredient);
-
-  const closeItemModal = () => {
-    setIsItemModalOpen(false);
-  };
 
   const openItemModal = (id: String) => {
     const selectedItem = ingredientsData.find((item) => item._id === id);
     setSelectedIngredient(selectedItem as Ingredient);
-    setIsItemModalOpen(true);
+    openModal();
   };
 
   React.useEffect(() => {
@@ -81,8 +77,8 @@ function BurgerIngredients({ ingredientsData }: Props) {
           />
         </div>
       </section>
-      {isItemModalOpen && (
-        <Modal closeModal={closeItemModal} title={"Детали ингредиента"}>
+      {isModalOpen && (
+        <Modal closeModal={closeModal} title={"Детали ингредиента"}>
           <IngredientDetails ingredientData={selectedIngredient} />
         </Modal>
       )}

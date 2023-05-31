@@ -8,6 +8,7 @@ import React from "react";
 import burgerConstructorStyles from "./burger-constructor.module.css";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import { useModal } from "../../hooks/useModal";
 
 const selectedBurgerIngredients = [
   {
@@ -62,16 +63,7 @@ const selectedBun = {
 };
 
 function BurgerConstructor() {
-  const [isOrderModalOpen, setIsOrderModalOpen] =
-    React.useState<boolean>(false);
-
-  const closeOrderModal = () => {
-    setIsOrderModalOpen(false);
-  };
-
-  const openOrderModal = () => {
-    setIsOrderModalOpen(true);
-  };
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
     <>
@@ -127,15 +119,15 @@ function BurgerConstructor() {
               htmlType="button"
               type="primary"
               size="medium"
-              onClick={openOrderModal}
+              onClick={openModal}
             >
               Оформить заказ
             </Button>
           </div>
         </div>
       </div>
-      {isOrderModalOpen && (
-        <Modal closeModal={closeOrderModal} title={""}>
+      {isModalOpen && (
+        <Modal closeModal={closeModal} title={""}>
           <OrderDetails />
         </Modal>
       )}
