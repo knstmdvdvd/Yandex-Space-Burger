@@ -1,10 +1,30 @@
 .item_wrapper {
     position: relative;
     width: 50%;
+    cursor: pointer;
 }
 
 .item_wrapper>*:not(.counter) {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.item_modal_wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item_modal_nutritions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item_modal_nutritions_item{
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
