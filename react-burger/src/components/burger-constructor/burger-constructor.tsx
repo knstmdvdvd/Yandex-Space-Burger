@@ -4,7 +4,7 @@ import burgerConstructorStyles from './burger-constructor.module.css'
 
 function BurgerConstructor() {
   return (
-    <div className={`ml-10 ${burgerConstructorStyles.burger_constructor_wrapper}`}>
+    <div className={`${burgerConstructorStyles.burger_constructor_wrapper}`}>
       <div className='mb-4 pl-8'>
         <ConstructorElement
           type="top"
@@ -65,8 +65,28 @@ function BurgerConstructor() {
             thumbnail={"https://code.s3.yandex.net/react/code/meat-03.png"}
           />
         </div>
+        <div className={`mb-2  ${burgerConstructorStyles.burger_constructor_item_wrapper}`}>
+          <div className='mr-2'>
+            <DragIcon type="primary" />
+          </div>
+          <ConstructorElement
+            text="Краторная булка N-200i (верх)"
+            price={50}
+            thumbnail={"https://code.s3.yandex.net/react/code/meat-03.png"}
+          />
+        </div>
+        <div className={`mb-2  ${burgerConstructorStyles.burger_constructor_item_wrapper}`}>
+          <div className='mr-2'>
+            <DragIcon type="primary" />
+          </div>
+          <ConstructorElement
+            text="Краторная булка N-200i (верх)"
+            price={50}
+            thumbnail={"https://code.s3.yandex.net/react/code/meat-03.png"}
+          />
+        </div>
       </div>
-      <div className='pl-8'>
+      <div className='mt-2 pl-8'>
         <ConstructorElement
           type="bottom"
           isLocked={true}

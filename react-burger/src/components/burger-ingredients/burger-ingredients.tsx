@@ -16,7 +16,7 @@ function BurgerIngredients({ ingredientsData }: Props) {
     }, [current]);
 
     return (
-        <section className={`mr-4 ${burgerIngredientsStyles.burger_ingredients_wrapper}`}>
+        <section className={`${burgerIngredientsStyles.burger_ingredients_wrapper}`}>
             <h1 className="text text_type_main-large" >Соберите бургер</h1>
             <div style={{ display: 'flex' }}>
                 <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>

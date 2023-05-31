@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 .burger_constructor_list_wrapper{
-    max-height: 350px;
+    max-height: calc(100vh - 550px);
     overflow-y: scroll;
 }
 .burger_constructor_item_wrapper{
