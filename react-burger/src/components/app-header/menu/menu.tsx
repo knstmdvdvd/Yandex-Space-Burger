@@ -1,16 +1,12 @@
-import React from 'react';
-import menuStyles from './menu.module.css'
+import React from "react";
+import menuStyles from "./menu.module.css";
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 function Menu({ children }: Props) {
-  return (
-    <ul className={menuStyles.menu}>
-      {children}
-    </ul>
-  );
+  return (<ul className={menuStyles.menu}>{children}</ul>);
 }
 
 export default Menu;

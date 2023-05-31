@@ -1,5 +1,5 @@
-import React from 'react';
-import modalOverlayStyles from './modal-overlay.module.css'
+import React from "react";
+import modalOverlayStyles from "./modal-overlay.module.css";
 
 type Props = {
   closeOverlay: () => void;
@@ -7,8 +7,7 @@ type Props = {
 
 function ModalOverlay({ closeOverlay }: Props) {
   return (
-    <div onClick={closeOverlay} className={modalOverlayStyles.overlay}>
-    </div>
+    <div onClick={closeOverlay} className={modalOverlayStyles.overlay}></div>
   );
 }
 

@@ -1,9 +1,9 @@
 .login_button {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
-
+ы
 .login_button_wrapper {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }

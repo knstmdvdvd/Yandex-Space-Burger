@@ -1,17 +1,17 @@
 .app_header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1C1C21;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1c21;
 }
 
 .app_header_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1280px;
 }
 
-.app_header_wrapper>* {
-    width: 33%;
+.app_header_wrapper > * {
+  width: 33%;
 }
