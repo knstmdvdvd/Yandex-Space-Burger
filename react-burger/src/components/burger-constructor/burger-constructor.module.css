@@ -15,3 +15,8 @@
     align-items: center;
     justify-content: flex-end;
 }
+.order_modal_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
