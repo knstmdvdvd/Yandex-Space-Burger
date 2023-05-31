@@ -14,8 +14,14 @@ function App() {
   React.useEffect(() => {
     const getIngredientsData = async () => {
       try {
-        const response = await fetch(apiUrl);
-        const responseData = await response.json();
+        let responseData;
+        const response = await fetch(apiUrl).then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Ошибка ${res.status}`);
+        });
+        responseData = await response;
         if (!responseData.success) {
           throw new Error(responseData);
         } else {
