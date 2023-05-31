@@ -1,7 +1,7 @@
 .burger_ingredients_wrapper{
     width: 600px;
 }
-.ingredients_list_group{
-    height: calc(100vh - 255px);
+.burger_ingredients_list_group{
+    height: calc(100vh - 310px);
     overflow-y: scroll;
 }

@@ -29,7 +29,7 @@ function BurgerIngredients({ ingredientsData }: Props) {
                     Начинки
                 </Tab>
             </div>
-            <div className={`custom-scroll pt-2 pr-1 ${burgerIngredientsStyles.ingredients_list_group}`}>
+            <div className={`custom-scroll mt-10 pr-1 ${burgerIngredientsStyles.burger_ingredients_list_group}`}>
                 <IngredientsGroup type='bun' title='Булки' ingredientsGroupData={ingredientsData.filter(item => item.type === 'bun')} />
                 <IngredientsGroup type='sauce' title='Соусы' ingredientsGroupData={ingredientsData.filter(item => item.type === 'sauce')} />
                 <IngredientsGroup type='main' title='Начинки' ingredientsGroupData={ingredientsData.filter(item => item.type === 'main')} />
