@@ -1,14 +1,14 @@
 import React from 'react';
-import  menuStyles from './menu.module.css'
+import menuStyles from './menu.module.css'
 
 interface Props {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
-function Menu({children}: Props) {
+function Menu({ children }: Props) {
   return (
     <ul className={menuStyles.menu}>
-        {children}
+      {children}
     </ul>
   );
 }

@@ -22,6 +22,6 @@
     flex-grow: 1;
 }
 
-.modal_wrapper_header>div{
+.modal_wrapper_header>div {
     cursor: pointer;
 }

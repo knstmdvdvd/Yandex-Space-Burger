@@ -30,7 +30,7 @@ function Modal({ closeModal, title, children }: Props) {
   }
 
   )
-  
+
   return ReactDOM.createPortal((
     <>
       <ModalOverlay closeOverlay={closeModal} />

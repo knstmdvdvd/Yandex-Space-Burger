@@ -3,6 +3,7 @@ import { Ingredient } from '../../../models/ingredient.model';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientsItemStyles from './ingredients-item.module.css'
 import Modal from '../../modal/modal';
+import IngredientDetails from '../../ingredient-details/ingredient-details';
 
 interface Props {
     ingredientData: Ingredient;
@@ -38,30 +39,7 @@ function IngredientsItem({ ingredientData }: Props) {
             </div>
             {
                 isItemModalOpen && <Modal closeModal={closeItemModal} title={'Детали ингредиента'}>
-                    <div className={ingredientsItemStyles.item_modal_wrapper}>
-                        <img className='mb-4' src={ingredientData.image_large} alt="" />
-                        <span className='text mb-8 text_type_main-medium'>
-                            {ingredientData.name}
-                        </span>
-                        <div className={ingredientsItemStyles.item_modal_nutritions}>
-                            <div className={ingredientsItemStyles.item_modal_nutritions_item}>
-                                <span className='mb-1 text text_type_main-small text_color_inactive'>Калории,ккал</span>
-                                <span className='text text_type_digits-default text_color_inactive'>{ingredientData.calories}</span>
-                            </div>
-                            <div className={ingredientsItemStyles.item_modal_nutritions_item}>
-                                <span className='mb-1 text text_type_main-small text_color_inactive'>Белки, г</span>
-                                <span className='text text_type_digits-default text_color_inactive'>{ingredientData.proteins}</span>
-                            </div>
-                            <div className={ingredientsItemStyles.item_modal_nutritions_item}>
-                                <span className='mb-1 text text_type_main-small text_color_inactive'>Жиры, г</span>
-                                <span className='text text_type_digits-default text_color_inactive'>{ingredientData.fat}</span>
-                            </div>
-                            <div className={ingredientsItemStyles.item_modal_nutritions_item}>
-                                <span className='mb-1 text text_type_main-small text_color_inactive'>Углеводы, г</span>
-                                <span className='text text_type_digits-default text_color_inactive'>{ingredientData.carbohydrates}</span>
-                            </div>
-                        </div>
-                    </div>
+                   <IngredientDetails ingredientData={ingredientData}/>
                 </Modal>
             }
         </>

@@ -17,7 +17,7 @@ function App() {
         if (!responseData.success) {
           throw new Error(responseData);
         }
-        else{
+        else {
           console.log(responseData.data);
           setIngredientsData(responseData.data);
         }
@@ -33,7 +33,7 @@ function App() {
     <div className="app">
       <AppHeader /> <main className={`mt-10 ${appStyles.main}`}>
         <BurgerIngredients ingredientsData={ingredientsData} />
-        <BurgerConstructor/>
+        <BurgerConstructor />
       </main>
     </div>
   );

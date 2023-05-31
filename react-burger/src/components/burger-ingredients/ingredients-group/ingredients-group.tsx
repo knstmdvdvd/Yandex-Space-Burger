@@ -11,7 +11,7 @@ interface Props {
 
 function IngredientsGroup({ ingredientsGroupData, title, type }: Props) {
     return (
-        <section id = {type} className='mb-10'>
+        <section id={type} className='mb-10'>
             <h2 className='text text_type_main-medium mb-6'>{title}</h2>
             <div className={ingredientsGroupStyles.ingredients_group_wrapper}>
                 {ingredientsGroupData.map(function (item, index) {
