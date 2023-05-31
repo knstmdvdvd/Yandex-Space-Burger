@@ -7,15 +7,27 @@ interface Props {
   ingredientsGroupData: Array<Ingredient>;
   title: string;
   type: string;
+  openItemModal: (id: string) => void;
 }
 
-function IngredientsGroup({ ingredientsGroupData, title, type }: Props) {
+function IngredientsGroup({
+  ingredientsGroupData,
+  title,
+  type,
+  openItemModal,
+}: Props) {
   return (
     <section id={type} className="mb-10">
       <h2 className="text text_type_main-medium mb-6">{title}</h2>
       <div className={ingredientsGroupStyles.ingredients_group_wrapper}>
         {ingredientsGroupData.map(function (item, index) {
-          return (<IngredientsItem key={item._id} ingredientData={item} />);
+          return (
+            <IngredientsItem
+              openItemModal={openItemModal}
+              key={item._id}
+              ingredientData={item}
+            />
+          );
         })}
       </div>
     </section>

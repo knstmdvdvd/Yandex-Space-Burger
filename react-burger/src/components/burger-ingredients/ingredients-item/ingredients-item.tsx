@@ -5,28 +5,18 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientsItemStyles from "./ingredients-item.module.css";
-import Modal from "../../modal/modal";
-import IngredientDetails from "../../ingredient-details/ingredient-details";
 
 interface Props {
   ingredientData: Ingredient;
+  openItemModal: (id: string) => void;
 }
 
-function IngredientsItem({ ingredientData }: Props) {
-  const [isItemModalOpen, setIsItemModalOpen] = React.useState<boolean>(false);
-
-  const closeItemModal = () => {
-    setIsItemModalOpen(false);
-  };
-
-  const openItemModal = () => {
-    setIsItemModalOpen(true);
-  };
+function IngredientsItem({ ingredientData, openItemModal }: Props) {
   return (
     <>
       <div
         className={`mb-8 ${ingredientsItemStyles.item_wrapper}`}
-        onClick={openItemModal}
+        onClick={() => openItemModal(ingredientData._id)}
       >
         <div className="mb-2">
           <img src={ingredientData.image} alt={ingredientData.name} />
@@ -40,11 +30,6 @@ function IngredientsItem({ ingredientData }: Props) {
         </span>
         <Counter count={1} size="default" />
       </div>
-      {isItemModalOpen && (
-        <Modal closeModal={closeItemModal} title={"Детали ингредиента"}>
-          <IngredientDetails ingredientData={ingredientData} />
-        </Modal>
-      )}
     </>
   );
 }
