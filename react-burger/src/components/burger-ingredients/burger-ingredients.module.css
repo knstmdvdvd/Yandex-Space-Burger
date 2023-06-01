@@ -1,0 +1,12 @@
+.burger_ingredients_wrapper {
+  width: 600px;
+}
+
+.burger_ingredients_list_group {
+  height: calc(100vh - 310px);
+  overflow-y: scroll;
+}
+
+.burger_ingredients_tab{
+    display: flex;
+}

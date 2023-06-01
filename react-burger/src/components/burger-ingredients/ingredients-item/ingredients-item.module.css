@@ -1,0 +1,11 @@
+.item_wrapper {
+  position: relative;
+  width: 50%;
+  cursor: pointer;
+}
+
+.item_wrapper > *:not(.counter) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
