@@ -1,4 +1,7 @@
-import { SET_SELECTED_INGREDIENT } from "../actions/modal-view";
+import {
+  DELETE_SELECTED_INGREDIENT,
+  SET_SELECTED_INGREDIENT,
+} from "../actions/modal-view";
 
 const initialState = {
   selectedIngredient: {},
@@ -12,6 +15,11 @@ export const modalView = (
     case SET_SELECTED_INGREDIENT: {
       return {
         selectedIngredient: action.item,
+      };
+    }
+    case DELETE_SELECTED_INGREDIENT: {
+      return {
+        selectedIngredient: {},
       };
     }
     default: {

@@ -7,7 +7,10 @@ import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import { useModal } from "../../hooks/useModal";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_SELECTED_INGREDIENT } from "../../services/actions/modal-view";
+import {
+  DELETE_SELECTED_INGREDIENT,
+  SET_SELECTED_INGREDIENT,
+} from "../../services/actions/modal-view";
 import { SET_TAB } from "../../services/actions/tabs";
 
 function BurgerIngredients() {
@@ -30,6 +33,11 @@ function BurgerIngredients() {
       activeTab: store.tabs.activeTab,
     })
   );
+
+  const closeViewModal = () => {
+    closeModal();
+    dispatch({ type: DELETE_SELECTED_INGREDIENT });
+  };
 
   const openItemModal = (id: String) => {
     const selectedItem = ingredientsData.find(
@@ -130,7 +138,7 @@ function BurgerIngredients() {
         )}
       </section>
       {isModalOpen && (
-        <Modal closeModal={closeModal} title={"Детали ингредиента"}>
+        <Modal closeModal={closeViewModal} title={"Детали ингредиента"}>
           <IngredientDetails />
         </Modal>
       )}
