@@ -1,17 +1,21 @@
 import React from "react";
 import ingredientsDetailsStyles from "./ingredient-details.module.css";
 import { Ingredient } from "../../models/ingredient.model";
+import { useSelector } from "react-redux";
 
-interface Props {
-  ingredientData: Ingredient;
-}
-
-function IngredientDetails({ ingredientData }: Props) {
+function IngredientDetails() {
+  const { selectedIngredient } = useSelector((store: any) => ({
+    selectedIngredient: store.modalView.selectedIngredient as Ingredient,
+  }));
   return (
     <div className={ingredientsDetailsStyles.item_modal_wrapper}>
-      <img className="mb-4" src={ingredientData.image_large} alt={ingredientData.name} />
+      <img
+        className="mb-4"
+        src={selectedIngredient.image_large}
+        alt={selectedIngredient.name}
+      />
       <span className="text mb-8 text_type_main-medium">
-        {ingredientData.name}
+        {selectedIngredient.name}
       </span>
       <div className={ingredientsDetailsStyles.item_modal_nutritions}>
         <div className={ingredientsDetailsStyles.item_modal_nutritions_item}>
@@ -19,7 +23,7 @@ function IngredientDetails({ ingredientData }: Props) {
             Калории,ккал
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            {ingredientData.calories}
+            {selectedIngredient.calories}
           </span>
         </div>
         <div className={ingredientsDetailsStyles.item_modal_nutritions_item}>
@@ -27,7 +31,7 @@ function IngredientDetails({ ingredientData }: Props) {
             Белки, г
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            {ingredientData.proteins}
+            {selectedIngredient.proteins}
           </span>
         </div>
         <div className={ingredientsDetailsStyles.item_modal_nutritions_item}>
@@ -35,7 +39,7 @@ function IngredientDetails({ ingredientData }: Props) {
             Жиры, г
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            {ingredientData.fat}
+            {selectedIngredient.fat}
           </span>
         </div>
         <div className={ingredientsDetailsStyles.item_modal_nutritions_item}>
@@ -43,7 +47,7 @@ function IngredientDetails({ ingredientData }: Props) {
             Углеводы, г
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            {ingredientData.carbohydrates}
+            {selectedIngredient.carbohydrates}
           </span>
         </div>
       </div>
