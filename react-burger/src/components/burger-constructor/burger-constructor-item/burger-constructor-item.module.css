@@ -18,3 +18,7 @@
   align-items: center;
   justify-content: flex-end;
 }
+.hoverDropItem {
+  transition: 70ms;
+  padding-top: 90px;
+}

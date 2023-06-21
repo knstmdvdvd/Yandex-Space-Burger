@@ -31,7 +31,7 @@ export const ingredientsReducer = (
       };
     }
     case GET_INGREDIENTS_FAILED: {
-      return { ...state, itemsFailed: true, itemsRequest: false };
+      return { ...initialState, itemsFailed: true, itemsRequest: false };
     }
     default: {
       return state;

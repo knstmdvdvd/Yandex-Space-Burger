@@ -6,7 +6,7 @@ import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import { useModal } from "../../hooks/useModal";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {
   DELETE_SELECTED_INGREDIENT,
   SET_SELECTED_INGREDIENT,
@@ -31,7 +31,8 @@ function BurgerIngredients() {
       ingredientsData: store.ingredients.ingredients as Ingredient[],
       itemsRequest: store.ingredients.itemsRequest,
       activeTab: store.tabs.activeTab,
-    })
+    }),
+    shallowEqual
   );
 
   const closeViewModal = () => {
@@ -47,40 +48,39 @@ function BurgerIngredients() {
     openModal();
   };
 
-  const setTab = (tab: String) => {
+  const setTab = (tab: string, isScroll?: boolean) => {
     dispatch({ type: SET_TAB, item: tab });
+    if (!isScroll) {
+      document.getElementById(tab)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
   };
 
-  const onScrolContainer = () => {
+  const onScrollContainer = () => {
     if (
       scrollContainer.current.getBoundingClientRect().top >
       bunsContainer.current.getBoundingClientRect().top
     ) {
-      setTab("bun");
+      setTab("bun", true);
     }
 
     if (
-      scrollContainer.current.getBoundingClientRect().top >
+      scrollContainer.current.getBoundingClientRect().top + 5 >
       saucesContainer.current.getBoundingClientRect().top
     ) {
-      setTab("sauce");
+      setTab("sauce", true);
     }
 
     if (
-      scrollContainer.current.getBoundingClientRect().top >
+      scrollContainer.current.getBoundingClientRect().top + 5 >
       mainsContainer.current.getBoundingClientRect().top
     ) {
-      setTab("main");
+      setTab("main", true);
     }
   };
-
-  React.useEffect(() => {
-    document.getElementById(activeTab)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-  }, [activeTab]);
   return (
     <>
       <section
@@ -102,7 +102,7 @@ function BurgerIngredients() {
           <div
             className={`custom-scroll mt-10 pr-1 ${burgerIngredientsStyles.burger_ingredients_list_group}`}
             ref={scrollContainer}
-            onScroll={onScrolContainer}
+            onScroll={onScrollContainer}
           >
             <div ref={bunsContainer}>
               <IngredientsGroup

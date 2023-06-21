@@ -2,11 +2,11 @@ import React from "react";
 import orderDetailsStyles from "./order-details.module.css";
 import doneIcon from "../../images/done-icon.svg";
 import { useSelector } from "react-redux";
-import { OrderRespone } from "../../models/order.model";
+import { OrderResponse } from "../../models/order.model";
 
 function OrderDetails() {
   const { order } = useSelector((store: any) => ({
-    order: store.order.order as OrderRespone,
+    order: store.order.order as OrderResponse,
   }));
   return (
     <div className={orderDetailsStyles.order_modal_wrapper}>

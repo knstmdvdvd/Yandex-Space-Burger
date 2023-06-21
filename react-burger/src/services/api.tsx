@@ -1,13 +1,15 @@
-import { apiUrl } from "../const/api.const";
+import { PATH } from "../const/api.const";
+
+const checkResponseOk = async (res: Response): Promise<any> => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка ${res.status}`);
+};
 
 export const getItemsRequest = async () => {
   try {
-    const response = await fetch(apiUrl + "ingredients").then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка ${res.status}`);
-    });
+    const response = await fetch(`${PATH}/ingredients`).then(checkResponseOk);
     const responseData = await response;
     if (!responseData.success) {
       throw new Error(responseData);
@@ -21,7 +23,7 @@ export const getItemsRequest = async () => {
 
 export const sendOrderApi = async (items: String[]) => {
   try {
-    const response = await fetch(apiUrl + "orders", {
+    const response = await fetch(`${PATH}/orders`, {
       method: "POST",
       headers: {
         "content-type": "application/json;charset=UTF-8",
@@ -29,12 +31,7 @@ export const sendOrderApi = async (items: String[]) => {
       body: JSON.stringify({
         ingredients: items,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка ${res.status}`);
-    });
+    }).then(checkResponseOk);
     const responseData = await response;
     if (!responseData.success) {
       throw new Error(responseData);

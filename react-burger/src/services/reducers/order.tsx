@@ -1,4 +1,4 @@
-import { OrderRespone } from "../../models/order.model";
+import { OrderResponse } from "../../models/order.model";
 import {
   SEND_ORDER_FAILED,
   SEND_ORDER_REQUEST,
@@ -8,13 +8,13 @@ import {
 interface State {
   orderRequestFailed: boolean;
   orderRequest: boolean;
-  order: OrderRespone;
+  order: OrderResponse;
 }
 
 const initialState: State = {
   orderRequestFailed: false,
   orderRequest: false,
-  order: {} as OrderRespone,
+  order: {} as OrderResponse,
 };
 
 export const order = (
@@ -37,7 +37,7 @@ export const order = (
       };
     }
     case SEND_ORDER_FAILED: {
-      return { ...state, itemsFailed: true, itemsRequest: false };
+      return { ...initialState, itemsFailed: true, itemsRequest: false };
     }
     default: {
       return state;

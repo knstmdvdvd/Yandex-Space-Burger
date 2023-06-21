@@ -26,7 +26,7 @@ function BurgerConstructorItem({ constructorItem }: Props) {
     }),
   });
 
-  const [, dropTarget] = useDrop({
+  const [{ isHover }, dropTarget] = useDrop({
     accept: "constructor-item",
     drop(dropItem: Ingredient) {
       if (dropItem.id === constructorItem.id) {
@@ -39,6 +39,9 @@ function BurgerConstructorItem({ constructorItem }: Props) {
         });
       }
     },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
   });
 
   const deleteItem = () => {
@@ -48,7 +51,12 @@ function BurgerConstructorItem({ constructorItem }: Props) {
   return (
     <>
       {!isDrag && (
-        <div ref={dropTarget}>
+        <div
+          ref={dropTarget}
+          className={`${
+            isHover ? burgerConstructorItemStyles.hoverDropItem : ""
+          }`}
+        >
           <div
             className={`mb-2  ${burgerConstructorItemStyles.burger_constructor_item_wrapper}`}
             ref={dragRef}

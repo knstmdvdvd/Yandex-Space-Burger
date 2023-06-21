@@ -10,7 +10,7 @@ import OrderDetails from "../order-details/order-details";
 import { useModal } from "../../hooks/useModal";
 import { useDrop } from "react-dnd";
 import BurgerConstructorItem from "./burger-constructor-item/burger-constructor-item";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Ingredient } from "../../models/ingredient.model";
 import {
   ADD_BUN,
@@ -42,14 +42,17 @@ function BurgerConstructor() {
     bunSum,
     orderRequestFailed,
     orderRequest,
-  } = useSelector((store: any) => ({
-    burgerItems: store.burgerConstructor.burgerItems as Ingredient[],
-    bun: store.burgerConstructor.bun as Ingredient,
-    orderSum: store.burgerConstructor.orderSum,
-    bunSum: store.burgerConstructor.bunSum,
-    orderRequestFailed: store.order.orderRequestFailed,
-    orderRequest: store.order.orderRequest,
-  }));
+  } = useSelector(
+    (store: any) => ({
+      burgerItems: store.burgerConstructor.burgerItems as Ingredient[],
+      bun: store.burgerConstructor.bun as Ingredient,
+      orderSum: store.burgerConstructor.orderSum,
+      bunSum: store.burgerConstructor.bunSum,
+      orderRequestFailed: store.order.orderRequestFailed,
+      orderRequest: store.order.orderRequest,
+    }),
+    shallowEqual
+  );
 
   const sendBurgerOrder = () => {
     if (bun._id && burgerItems.length > 0) {

@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./components/app";
 import reportWebVitals from "./reportWebVitals";
 import { rootReducer } from "./services/reducers";
 import { applyMiddleware, compose, createStore } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import App from "./components/app/app";
 
 const composeEnhancers =
   typeof window === "object" &&
