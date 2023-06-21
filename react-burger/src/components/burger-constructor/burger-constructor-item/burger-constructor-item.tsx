@@ -2,9 +2,9 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, { useRef, useState } from "react";
 import burgerConstructorItemStyles from "./burger-constructor-item.module.css";
-import { useDrag, useDrop } from "react-dnd";
+import { XYCoord, useDrag, useDrop } from "react-dnd";
 import { Ingredient } from "../../../models/ingredient.model";
 import { useDispatch } from "react-redux";
 import {
@@ -18,6 +18,8 @@ interface Props {
 
 function BurgerConstructorItem({ constructorItem }: Props) {
   const dispatch = useDispatch();
+  const [dropAlign, setDropAlign] = useState<string>("up");
+  const itemContainer = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [{ isDrag }, dragRef] = useDrag({
     type: "constructor-item",
     item: constructorItem,
@@ -36,7 +38,22 @@ function BurgerConstructorItem({ constructorItem }: Props) {
           type: MOVE_ITEM,
           dropItem: dropItem,
           item: constructorItem,
+          direction: dropAlign,
         });
+      }
+    },
+    hover(item, monitor) {
+      const hoverBoundingRect = itemContainer.current?.getBoundingClientRect();
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const clientOffset = monitor.getClientOffset();
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
+      if (hoverClientY < hoverMiddleY) {
+        setDropAlign("up");
+      }
+
+      if (hoverClientY > hoverMiddleY) {
+        setDropAlign("down");
       }
     },
     collect: (monitor) => ({
@@ -54,22 +71,28 @@ function BurgerConstructorItem({ constructorItem }: Props) {
         <div
           ref={dropTarget}
           className={`${
-            isHover ? burgerConstructorItemStyles.hoverDropItem : ""
+            isHover && dropAlign === "up"
+              ? burgerConstructorItemStyles.hoverDropItem
+              : isHover && dropAlign === "down"
+              ? burgerConstructorItemStyles.hoverDropItemDown
+              : ""
           }`}
         >
-          <div
-            className={`mb-2  ${burgerConstructorItemStyles.burger_constructor_item_wrapper}`}
-            ref={dragRef}
-          >
-            <div className="mr-2">
-              <DragIcon type="primary" />
+          <div ref={itemContainer}>
+            <div
+              className={`mb-2  ${burgerConstructorItemStyles.burger_constructor_item_wrapper}`}
+              ref={dragRef}
+            >
+              <div className="mr-2">
+                <DragIcon type="primary" />
+              </div>
+              <ConstructorElement
+                text={constructorItem.name}
+                price={constructorItem.price}
+                thumbnail={constructorItem.image}
+                handleClose={deleteItem}
+              />
             </div>
-            <ConstructorElement
-              text={constructorItem.name}
-              price={constructorItem.price}
-              thumbnail={constructorItem.image}
-              handleClose={deleteItem}
-            />
           </div>
         </div>
       )}

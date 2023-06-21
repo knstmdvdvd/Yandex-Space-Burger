@@ -19,6 +19,10 @@
   justify-content: flex-end;
 }
 .hoverDropItem {
-  transition: 70ms;
+  transition: 100ms;
   padding-top: 90px;
+}
+.hoverDropItemDown {
+  transition: 100ms;
+  padding-bottom: 90px;
 }

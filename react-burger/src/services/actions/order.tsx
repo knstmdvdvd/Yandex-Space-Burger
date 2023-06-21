@@ -14,7 +14,6 @@ export function sendOrder(items: String[]) {
       type: SEND_ORDER_REQUEST,
     });
     sendOrderApi(items).then((res) => {
-      console.log(res);
       if (res) {
         dispatch({
           type: SEND_ORDER_SUCCESS,

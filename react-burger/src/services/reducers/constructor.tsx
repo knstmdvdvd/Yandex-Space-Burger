@@ -29,6 +29,7 @@ export const constructorItemReducer = (
     dropItem: Ingredient;
     type: any;
     item: Ingredient;
+    direction: string;
   }
 ) => {
   switch (action.type) {
@@ -79,7 +80,11 @@ export const constructorItemReducer = (
       const index = ingredient.findIndex(
         (ingredient) => ingredient.id === action.item.id
       );
-      ingredient.splice(index, 0, action.dropItem);
+      if (action.direction === "up") {
+        ingredient.splice(index, 0, action.dropItem);
+      } else {
+        ingredient.splice(index + 1, 0, action.dropItem);
+      }
       return {
         ...state,
         burgerItems: ingredient,
