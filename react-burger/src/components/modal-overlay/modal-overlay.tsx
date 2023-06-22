@@ -1,9 +1,9 @@
 import React from "react";
 import modalOverlayStyles from "./modal-overlay.module.css";
 
-type Props = {
+interface Props {
   closeOverlay: () => void;
-};
+}
 
 function ModalOverlay({ closeOverlay }: Props) {
   return (

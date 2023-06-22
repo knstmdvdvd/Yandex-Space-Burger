@@ -1,0 +1,28 @@
+.burger_constructor_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.burger_constructor_list_wrapper {
+  max-height: calc(100vh - 550px);
+  overflow-y: scroll;
+}
+
+.burger_constructor_item_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.burger_constructor_order_button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.hoverDropItem {
+  transition: 100ms;
+  padding-top: 90px;
+}
+.hoverDropItemDown {
+  transition: 100ms;
+  padding-bottom: 90px;
+}

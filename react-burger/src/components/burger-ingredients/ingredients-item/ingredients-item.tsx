@@ -5,6 +5,8 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientsItemStyles from "./ingredients-item.module.css";
+import { useDrag } from "react-dnd";
+import { shallowEqual, useSelector } from "react-redux";
 
 interface Props {
   ingredientData: Ingredient;
@@ -12,25 +14,48 @@ interface Props {
 }
 
 function IngredientsItem({ ingredientData, openItemModal }: Props) {
+  const { burgerItems, bun } = useSelector(
+    (store: any) => ({
+      burgerItems: store.burgerConstructor.burgerItems as Ingredient[],
+      bun: store.burgerConstructor.bun as Ingredient,
+    }),
+    shallowEqual
+  );
+  const [, dragRef] = useDrag({
+    type: ingredientData.type,
+    item: { ...ingredientData },
+  });
   return (
-    <>
-      <div
-        className={`mb-8 ${ingredientsItemStyles.item_wrapper}`}
-        onClick={() => openItemModal(ingredientData._id)}
-      >
-        <div className="mb-2">
-          <img src={ingredientData.image} alt={ingredientData.name} />
-        </div>
-        <div className="text text_type_digits-default mb-2">
-          <span className="mr-2">{ingredientData.price}</span>
-          <CurrencyIcon type="primary" />
-        </div>
-        <span className="pr-1 pl-1 text text_type_main-default">
-          {ingredientData.name}
-        </span>
-        <Counter count={1} size="default" />
+    <div
+      ref={dragRef}
+      className={`mb-8 ${ingredientsItemStyles.item_wrapper}`}
+      onClick={() => openItemModal(ingredientData._id)}
+    >
+      <div className="mb-2">
+        <img src={ingredientData.image} alt={ingredientData.name} />
       </div>
-    </>
+      <div className="text text_type_digits-default mb-2">
+        <span className="mr-2">{ingredientData.price}</span>
+        <CurrencyIcon type="primary" />
+      </div>
+      <span className="pr-1 pl-1 text text_type_main-default">
+        {ingredientData.name}
+      </span>
+      {ingredientData.type !== "bun" && (
+        <Counter
+          count={
+            burgerItems.filter((el) => el._id === ingredientData._id).length
+          }
+          size="default"
+        />
+      )}
+      {ingredientData.type === "bun" && (
+        <Counter
+          count={bun._id === ingredientData._id ? 2 : 0}
+          size="default"
+        />
+      )}
+    </div>
   );
 }
 

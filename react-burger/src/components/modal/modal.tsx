@@ -5,11 +5,11 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ReactDOM from "react-dom";
 
 const modalWrapper = document.getElementById("modals") as HTMLElement;
-type Props = {
+interface Props {
   closeModal: () => void;
   title: string;
   children: React.ReactNode;
-};
+}
 
 function Modal({ closeModal, title, children }: Props) {
   useEffect(() => {
